@@ -3,8 +3,31 @@ import rest_framework_filters
 from api.serializers import *
 
 
+class WorkFilter(rest_framework_filters.FilterSet):
+    id = rest_framework_filters.AllLookupsFilter()
+    district = rest_framework_filters.MethodFilter()
+    grampanchayat = rest_framework_filters.MethodFilter()
+
+    class Meta:
+        model = Work
+
+    def filter_district(self, name, qs, value):
+        return Work.objects.filter(uploaded_by__grampanchayat__district=value)
+
+    def filter_grampanchayat(self, name, qs, value):
+        return Work.objects.filter(uploaded_by__grampanchayat=value)
+
+
+class GramPanchayatFilter(rest_framework_filters.FilterSet):
+    id = rest_framework_filters.AllLookupsFilter()
+
+    class Meta:
+        model = GramPanchayat
+
+
 class ProfileFilter(rest_framework_filters.FilterSet):
     id = rest_framework_filters.AllLookupsFilter()
+    grampanchayat = rest_framework_filters.RelatedFilter(GramPanchayatFilter)
 
     class Meta:
         model = Profile
@@ -15,21 +38,6 @@ class DistrictFilter(rest_framework_filters.FilterSet):
 
     class Meta:
         model = District
-
-
-class GramPanchayatFilter(rest_framework_filters.FilterSet):
-    id = rest_framework_filters.AllLookupsFilter()
-    district = rest_framework_filters.RelatedFilter(DistrictFilter)
-
-    class Meta:
-        model = GramPanchayat
-
-
-class WorkFilter(rest_framework_filters.FilterSet):
-    id = rest_framework_filters.AllLookupsFilter()
-
-    class Meta:
-        model = Work
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
