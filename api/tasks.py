@@ -5,4 +5,4 @@ from api.models import Work
 
 @shared_task
 def pay():
-    pass
+    Work.objects.filter(payment_done=False, verified_by__isnull=False).update(payment_done=True)
