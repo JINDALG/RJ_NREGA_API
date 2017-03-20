@@ -49,6 +49,7 @@ class Work(models.Model):
     uploaded_by = models.ForeignKey(Profile, null=True, blank=True, related_name='uploaded_by',
                                     related_query_name='work')
     verified_by = models.ForeignKey(Profile, null=True, blank=True, related_name='verified_by')
+    payment_done = models.BooleanField(default=False)
 
     def __str__(self):
         return '-'.join([self.emp_aadhar, self.timestamp])
