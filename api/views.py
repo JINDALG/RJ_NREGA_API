@@ -19,6 +19,7 @@ class DistrictFilter(rest_framework_filters.FilterSet):
 
 class GramPanchayatFilter(rest_framework_filters.FilterSet):
     id = rest_framework_filters.AllLookupsFilter()
+    district = rest_framework_filters.RelatedFilter(DistrictFilter)
 
     class Meta:
         model = GramPanchayat
@@ -46,7 +47,7 @@ class DistrictViewSet(viewsets.ModelViewSet):
 class GramPanchayatViewSet(viewsets.ModelViewSet):
     serializer_class = GramPanchayatSerializer
     queryset = GramPanchayat.objects.all()
-    filter_class = GramPanchayat
+    filter_class = GramPanchayatFilter
 
 
 class WorkViewSet(viewsets.ModelViewSet):

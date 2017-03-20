@@ -29,7 +29,7 @@ class District(models.Model):
     officer = models.ForeignKey(Profile)
 
     def __str__(self):
-        return '-'.join([self.district_id, self.name, self.officer])
+        return '-'.join([self.district_id, self.name])
 
 
 class GramPanchayat(models.Model):
@@ -39,7 +39,7 @@ class GramPanchayat(models.Model):
     district = models.ForeignKey(District)
 
     def __str__(self):
-        return '-'.join([self.gp_id, self.name, self.officer, self.district])
+        return '-'.join([self.gp_id, self.name])
 
 
 class Work(models.Model):
