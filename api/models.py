@@ -65,7 +65,7 @@ class Work(TimeStampedModel):
 class Employee(TimeStampedModel):
     emp_aadhar = models.CharField(max_length=12)
     name = models.CharField(max_length=30)
-    address = models.TextField()
+    district = models.IntegerField(blank=True, null=True)
     gender = models.CharField(choices=GENDER_TYPES, max_length=10)
     start_date = models.DateField(null=True, blank=True)
     employement_days = models.IntegerField(default=0, null=True, blank=True)

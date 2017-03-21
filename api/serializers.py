@@ -21,6 +21,7 @@ class GramPanchayatSerializer(serializers.ModelSerializer):
 
 
 class WorkSerializer(serializers.ModelSerializer):
+    uploaded_by_detail = ProfileSerializer(read_only=True, source='uploaded_by')
 
     class Meta:
         model = Work
