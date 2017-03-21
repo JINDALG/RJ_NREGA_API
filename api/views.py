@@ -3,6 +3,13 @@ import rest_framework_filters
 from api.serializers import *
 
 
+class EmployeeFilter(rest_framework_filters.FilterSet):
+    id = rest_framework_filters.AllLookupsFilter()
+
+    class Meta:
+        model = Employee
+
+
 class WorkFilter(rest_framework_filters.FilterSet):
     id = rest_framework_filters.AllLookupsFilter()
     district = rest_framework_filters.MethodFilter()
@@ -63,3 +70,8 @@ class WorkViewSet(viewsets.ModelViewSet):
     queryset = Work.objects.all()
     filter_class = WorkFilter
 
+
+class EmployeeViewSet(viewsets.ModelViewSet):
+    serializer_class = EmployeeSerializer
+    queryset = Employee.objects.all()
+    filter_class = EmployeeFilter

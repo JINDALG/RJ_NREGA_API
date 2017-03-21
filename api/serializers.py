@@ -24,3 +24,9 @@ class WorkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Work
+
+
+class EmployeeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Employee

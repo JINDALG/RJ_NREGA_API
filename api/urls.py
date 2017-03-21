@@ -8,6 +8,7 @@ router.register('profile', ProfileViewSet)
 router.register('district', DistrictViewSet)
 router.register('grampanchayat', GramPanchayatViewSet)
 router.register('work', WorkViewSet)
+router.register('employee', EmployeeViewSet)
 
 urlpatterns = [
     url('', include(router.urls))
