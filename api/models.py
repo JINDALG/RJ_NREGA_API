@@ -19,7 +19,8 @@ GENDER_TYPES = (
     ('Other', 'Other')
 )
 
-class Profile(models.Model):
+
+class Profile(TimeStampedModel):
     userid = models.CharField(max_length=12)
     password = models.CharField(max_length=20)
     role = models.CharField(choices=ROLE_TYPES, max_length=20)
@@ -28,7 +29,7 @@ class Profile(models.Model):
         return '-'.join([self.userid, self.role])
 
 
-class District(models.Model):
+class District(TimeStampedModel):
     district_id = models.CharField(max_length=20)
     name = models.CharField(max_length=25)
     officer = models.ForeignKey(Profile)
@@ -37,7 +38,7 @@ class District(models.Model):
         return '-'.join([self.district_id, self.name])
 
 
-class GramPanchayat(models.Model):
+class GramPanchayat(TimeStampedModel):
     gp_id = models.CharField(max_length=10)
     name = models.CharField(max_length=25)
     officer = models.ForeignKey(Profile)
@@ -47,7 +48,7 @@ class GramPanchayat(models.Model):
         return '-'.join([self.gp_id, self.name])
 
 
-class Work(models.Model):
+class Work(TimeStampedModel):
     emp_aadhar = models.CharField(max_length=12)
     description = models.CharField(max_length=100)
     photo = models.TextField(null=True, blank=True)
